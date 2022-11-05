@@ -1,6 +1,8 @@
 import 'package:air_quality/core/presentation/theme/theme.dart';
+import 'package:air_quality/generated/l10n.dart';
 import 'package:alchemist/alchemist.dart' as alchemist;
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:meta/meta.dart';
 import 'package:recase/recase.dart';
 
@@ -26,6 +28,11 @@ Future<void> goldenTest(
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
         home: builder(),
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
       ),
       textScaleFactor: textScaleFactor,
       constraints: constraints,
@@ -52,8 +59,8 @@ Future<void> goldenPageTest(
       builder: () => _buildPageTestWidget(builder),
       textScaleFactor: textScaleFactor,
       constraints: const BoxConstraints(
-        // +16 because it overflows by 16 pixels when ran.
-        maxWidth: 2 * kMobileDeviceWidth + 2 * kTabletDeviceWidth + 16,
+        // +16 because it padding takes space.
+        maxWidth: kMobileDeviceWidth + kTabletDeviceWidth + 16,
         maxHeight: kTabletDeviceHeight,
       ),
       whilePerforming: (tester) async {
@@ -71,22 +78,6 @@ Widget _buildPageTestWidget(Widget Function() builder) {
         child: SizedBox(
           height: kMobileDeviceHeight,
           width: kMobileDeviceWidth,
-          child: builder(),
-        ),
-      ),
-      Theme(
-        data: darkTheme,
-        child: SizedBox(
-          height: kMobileDeviceHeight,
-          width: kMobileDeviceWidth,
-          child: builder(),
-        ),
-      ),
-      Theme(
-        data: lightTheme,
-        child: SizedBox(
-          height: kTabletDeviceHeight,
-          width: kTabletDeviceWidth,
           child: builder(),
         ),
       ),
