@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# Credits Damian Kaczmarek 
+# https://appunite.notion.site/Pre-commit-Flutter-format-7cccce1dffe347eeac76754ec404798b
+
+LINE_LENGTH=120
+
+# ignore merges
+isMerge=$(git rev-parse -q --verify MERGE_HEAD)
+if [ -n "$isMerge" ]; then
+  exit
+fi
+
+# Regexp for grep to only choose some file extensions for formatting
+exts="\.dart$"
+echo "Pre-commit: formatting changed files"
+# Format staged files
+filesToFormat=()
+for file in $(git diff --cached --name-only --diff-filter=ACMR | grep $exts); do
+  # excluding proto, generated directory and .g.dart and .graphql.dart files
+  if [[ ! $file =~ lib/(generated|proto).*\.dart  && ! $file =~ .*\.freezed\.dart && ! $file =~ .*\.g\.dart && ! $file =~ .*\.graphql\.dart && ! $file =~ .*\.gr\.dart && ! $file =~ .*/assets\.dart  ]]; then
+    filesToFormat+=("$file")
+  fi
+done
+
+for file in "${filesToFormat[@]}"; do
+  echo "Formatting $file"
+done
+
+if (( ${#filesToFormat[@]} )); then
+  flutter format -l $LINE_LENGTH "${filesToFormat[@]}"
+  git add "${filesToFormat[@]}"
+fi

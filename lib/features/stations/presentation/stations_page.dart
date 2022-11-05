@@ -1,3 +1,4 @@
+import 'package:air_quality/core/presentation/widgets/basic/air_quality_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class StationsPage extends StatelessWidget {
@@ -5,6 +6,6 @@ class StationsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const AQScaffold();
   }
 }
