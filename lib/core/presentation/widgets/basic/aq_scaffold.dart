@@ -1,4 +1,4 @@
-import 'package:air_quality/core/presentation/widgets/basic/air_quality_app_bar.dart';
+import 'package:air_quality/core/presentation/widgets/basic/aq_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class AQScaffold extends StatelessWidget {
