@@ -11,8 +11,7 @@ final lightTheme = FlexThemeData.light(
   ),
   visualDensity: FlexColorScheme.comfortablePlatformDensity,
   useMaterial3: true,
-  // To use the playground font, add GoogleFonts package and uncomment
-  // fontFamily: GoogleFonts.notoSans().fontFamily,
+  fontFamily: 'NotoSans',
 );
 
 final darkTheme = FlexThemeData.dark(
@@ -25,6 +24,5 @@ final darkTheme = FlexThemeData.dark(
   ),
   visualDensity: FlexColorScheme.comfortablePlatformDensity,
   useMaterial3: true,
-  // To use the playground font, add GoogleFonts package and uncomment
-  // fontFamily: GoogleFonts.notoSans().fontFamily,
+  fontFamily: 'NotoSans',
 );
