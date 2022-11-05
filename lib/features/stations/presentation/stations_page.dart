@@ -1,4 +1,4 @@
-import 'package:air_quality/core/presentation/widgets/basic/air_quality_scaffold.dart';
+import 'package:air_quality/core/presentation/widgets/basic/aq_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class StationsPage extends StatelessWidget {
