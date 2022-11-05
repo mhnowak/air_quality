@@ -90,11 +90,23 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  flutter_localizations:
+    dependency: "direct main"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.0"
   lints:
     dependency: transitive
     description:
@@ -131,7 +143,7 @@ packages:
     source: hosted
     version: "1.8.2"
   recase:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: recase
       url: "https://pub.dartlang.org"

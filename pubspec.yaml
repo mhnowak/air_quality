@@ -13,7 +13,10 @@ dependencies:
   flex_color_scheme: ^6.0.1
   flutter:
     sdk: flutter
-
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
+  recase: ^4.1.0
 
 dev_dependencies:
   alchemist: ^0.5.1
@@ -21,8 +24,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   meta: ^1.8.0
-  recase: ^4.1.0
-
 
 flutter:
   uses-material-design: true
+flutter_intl:
+  enabled: true
