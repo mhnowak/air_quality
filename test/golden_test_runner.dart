@@ -84,22 +84,6 @@ Widget _buildPageTestWidget(Widget Function() builder) {
       Theme(
         data: darkTheme,
         child: SizedBox(
-          height: kMobileDeviceHeight,
-          width: kMobileDeviceWidth,
-          child: builder(),
-        ),
-      ),
-      Theme(
-        data: lightTheme,
-        child: SizedBox(
-          height: kTabletDeviceHeight,
-          width: kTabletDeviceWidth,
-          child: builder(),
-        ),
-      ),
-      Theme(
-        data: darkTheme,
-        child: SizedBox(
           height: kTabletDeviceHeight,
           width: kTabletDeviceWidth,
           child: builder(),
