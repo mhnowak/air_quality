@@ -16,3 +16,19 @@ An app displaying air quality based on "Jakość Powietrza" portal's [API](http
     - [ ] macOS,
     - [ ] linux,
     - [ ] web - free firebase hosting?
+
+## Project Setup
+
+### Flutter
+
+This project uses asdf to manage flutter's version. Learn more [here](https://github.com/oae/asdf-flutter).
+
+### Githooks
+
+This project uses githooks to maintain code quality before publishing the code for code review.
+
+Set them up by running:
+
+```bash
+git config core.hooksPath .githooks/
+```
