@@ -2,7 +2,7 @@ import 'package:air_quality/core/presentation/theme/theme.dart';
 import 'package:air_quality/core/presentation/widgets/basic/aq_app_bar.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../golden_test.dart';
+import '../../../../golden_test_runner.dart';
 
 void main() {
   goldenTest(
