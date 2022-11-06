@@ -8,7 +8,7 @@ An app displaying air quality based on "Jakość Powietrza" portal's [API](http
     - [ ] has meaningful tests,
     - [ ] uses streams,
     - [ ] JSON serialization and deserialization,
-    - [ ] uses at least one external library,
+    - [ ] uses at least one external library.
 2. KISS - keep it simple, stupid!
 3. App is able to run on all supported platforms:
     - [ ] android,
@@ -21,7 +21,7 @@ An app displaying air quality based on "Jakość Powietrza" portal's [API](http
 
 ### Flutter
 
-This project uses asdf to manage flutter's version. Learn more [here](https://github.com/oae/asdf-flutter).
+This project uses [asdf](https://github.com/oae/asdf-flutter) to manage flutter's version.
 
 ### Githooks
 
@@ -41,10 +41,11 @@ git config core.hooksPath .githooks/
 - [equatable](https://pub.dev/packages/equatable) - value based equality for objects,
 - [flex_color_scheme](https://pub.dev/packages/flex_color_scheme) - built in theme that follows material 3 standards,
 - [intl](https://pub.dev/packages/intl) - internalization of texts,
-- [json_serializable](https://pub.dev/packages/json_serializable) - code generator for json serialisation to/from Json,
+- [json_serializable](https://pub.dev/packages/json_serializable) - code generator for to/from json methods,
 - [kiwi](https://pub.dev/packages/kiwi) - dependency injection,
+- [flutter_riverpod](https://pub.dev/packages/flutter_riverpod) - state management.
 
 ### Test dependencies
 
 - [alchemist](https://pub.dev/packages/alchemist) - screenshot tests,
-- [mocktail](https://pub.dev/packages/mocktail) - simplifies mocking,
+- [mocktail](https://pub.dev/packages/mocktail) - simplifies mocking.

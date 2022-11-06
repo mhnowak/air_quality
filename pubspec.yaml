@@ -17,6 +17,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  flutter_riverpod: ^2.1.1
   intl: ^0.17.0
   json_annotation: ^4.7.0
   kiwi: ^4.0.3
