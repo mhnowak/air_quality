@@ -1,4 +1,4 @@
-import 'package:air_quality/features/stations/domain/entities/Station_entity.dart';
+import 'package:air_quality/features/stations/domain/entities/station_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../t_stations_data.dart';
