@@ -59,6 +59,16 @@ class S {
       args: [],
     );
   }
+
+  /// `We couldn't load your page! :( Please check you're connected to the internet. If the issue continues, please fill an issue on our GitHub's repository page.`
+  String get stationsExceptionMessage {
+    return Intl.message(
+      'We couldn\'t load your page! :( Please check you\'re connected to the internet. If the issue continues, please fill an issue on our GitHub\'s repository page.',
+      name: 'stationsExceptionMessage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

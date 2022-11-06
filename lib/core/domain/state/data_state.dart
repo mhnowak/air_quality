@@ -4,20 +4,20 @@ import 'package:equatable/equatable.dart';
 abstract class DataState<T> extends Equatable {
   const DataState();
 
-  const factory DataState.loading() = _LoadingDataState;
-  const factory DataState.loaded(T data) = _LoadedDataState<T>;
-  const factory DataState.exception(AQException e) = _ExceptionDataState;
+  const factory DataState.loading() = LoadingState;
+  const factory DataState.loaded(T data) = LoadedState<T>;
+  const factory DataState.exception(AQException e) = ExceptionState;
 
   @override
   List<Object?> get props => [];
 }
 
-class _LoadingDataState<T> extends DataState<T> {
-  const _LoadingDataState();
+class LoadingState<T> extends DataState<T> {
+  const LoadingState();
 }
 
-class _LoadedDataState<T> extends DataState<T> {
-  const _LoadedDataState(this.data);
+class LoadedState<T> extends DataState<T> {
+  const LoadedState(this.data);
 
   final T data;
 
@@ -25,8 +25,8 @@ class _LoadedDataState<T> extends DataState<T> {
   List<Object?> get props => [data];
 }
 
-class _ExceptionDataState<T> extends DataState<T> {
-  const _ExceptionDataState(this.exception);
+class ExceptionState<T> extends DataState<T> {
+  const ExceptionState(this.exception);
 
   final AQException exception;
 

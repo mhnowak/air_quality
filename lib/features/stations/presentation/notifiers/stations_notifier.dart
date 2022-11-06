@@ -6,7 +6,9 @@ import 'package:air_quality/features/stations/data/stations_repository.dart';
 import 'package:air_quality/features/stations/domain/entities/station_entity.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final stationsProvider = StateNotifierProvider((_) => kiwi<StationsNotifier>());
+final stationsProvider =
+    StateNotifierProvider.autoDispose<StateNotifier<DataState<List<StationEntity>>>, DataState<List<StationEntity>>>(
+        (_) => StationsNotifier(kiwi<StationsRepository>()));
 
 class StationsNotifier extends StateNotifier<DataState<List<StationEntity>>> {
   StationsNotifier(this._stationsRepository) : super(const DataState.loading()) {

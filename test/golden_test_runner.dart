@@ -3,6 +3,7 @@ import 'package:air_quality/generated/l10n.dart';
 import 'package:alchemist/alchemist.dart' as alchemist;
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meta/meta.dart';
 import 'package:recase/recase.dart';
 
@@ -20,19 +21,23 @@ Future<void> goldenTest(
   bool? skip,
   BoxConstraints constraints = const BoxConstraints(),
   double textScaleFactor = 1.0,
+  List<Override> overrides = const [],
 }) =>
     alchemist.goldenTest(
       name,
       fileName: name.snakeCase,
       skip: skip ?? false,
-      builder: () => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: builder(),
-        localizationsDelegates: const [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-        ],
-        supportedLocales: S.delegate.supportedLocales,
+      builder: () => ProviderScope(
+        overrides: overrides,
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: builder(),
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
+        ),
       ),
       textScaleFactor: textScaleFactor,
       constraints: constraints,
@@ -52,12 +57,20 @@ Future<void> goldenPageTest(
   String? path,
   bool? skip,
   double textScaleFactor = 1.0,
+  void Function()? onBuild,
+  List<Override> overrides = const [],
 }) =>
     goldenTest(
       name,
       skip: skip ?? false,
-      builder: () => _buildPageTestWidget(builder),
+      builder: () {
+        if (onBuild != null) {
+          onBuild();
+        }
+        return _buildPageTestWidget(builder);
+      },
       textScaleFactor: textScaleFactor,
+      overrides: overrides,
       constraints: const BoxConstraints(
         // +16 because it padding takes space.
         maxWidth: kMobileDeviceWidth + kTabletDeviceWidth + 16,
