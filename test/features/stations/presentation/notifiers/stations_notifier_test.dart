@@ -13,18 +13,21 @@ void main() {
   const tException = InvalidResponseDataException();
   final tUnknownException = Exception();
   final tStations = [tStationEntity()];
+
   late MockStationsRepository mockStationsRepository;
   late StationsNotifier notifier;
 
-  void setup([Future<List<StationEntity>>? result]) {
+  setUp(() {
     mockStationsRepository = MockStationsRepository();
-    when(() => mockStationsRepository.getStations()).thenAnswer((_) => result ?? Future.value(tStations));
+  });
 
+  void setUpNotifier() {
     notifier = StationsNotifier(mockStationsRepository);
   }
 
   test('State should be loaded when request is succesful', () async {
-    setup();
+    when(() => mockStationsRepository.getStations()).thenAnswer((_) async => tStations);
+    setUpNotifier();
 
     await pumpEventQueue();
 
@@ -34,7 +37,8 @@ void main() {
   });
 
   test('State should be exception with [AQException] when request is unsuccesful', () async {
-    setup(Future.error(tException));
+    when(() => mockStationsRepository.getStations()).thenAnswer((_) async => throw tException);
+    setUpNotifier();
 
     await pumpEventQueue();
 
@@ -44,7 +48,8 @@ void main() {
   });
 
   test('State should be exception with [UnknownException] when something goes wrong', () async {
-    setup(Future.error(tUnknownException));
+    when(() => mockStationsRepository.getStations()).thenAnswer((_) async => throw tUnknownException);
+    setUpNotifier();
 
     await pumpEventQueue();
 

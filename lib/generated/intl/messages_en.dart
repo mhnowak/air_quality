@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "stationsExceptionMessage": MessageLookupByLibrary.simpleMessage(
+            "We couldn\'t load your page! :( Please check you\'re connected to the internet. If the issue continues, please fill an issue on our GitHub\'s repository page."),
         "stationsTitle": MessageLookupByLibrary.simpleMessage("stations")
       };
 }

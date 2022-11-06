@@ -1,12 +1,15 @@
+import 'package:air_quality/core/data/network_manager.dart';
 import 'package:air_quality/core/domain/exceptions/aq_exception.dart';
 import 'package:air_quality/core/domain/exceptions/unknown_exception.dart';
 import 'package:air_quality/core/domain/state/data_state.dart';
-import 'package:air_quality/dependencies.dart';
 import 'package:air_quality/features/stations/data/stations_repository.dart';
 import 'package:air_quality/features/stations/domain/entities/station_entity.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final stationsProvider = StateNotifierProvider((_) => kiwi<StationsNotifier>());
+final stationsProvider =
+    StateNotifierProvider.autoDispose<StateNotifier<DataState<List<StationEntity>>>, DataState<List<StationEntity>>>(
+        (_) => StationsNotifier(StationsRepository(NetworkManager(Dio()))));
 
 class StationsNotifier extends StateNotifier<DataState<List<StationEntity>>> {
   StationsNotifier(this._stationsRepository) : super(const DataState.loading()) {

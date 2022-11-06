@@ -1,3 +1,4 @@
 {
-    "stationsTitle": "stacje"
+    "stationsTitle": "stacje",
+    "stationsExceptionMessage": "Niestety nie udało się załadować tego ekranu! :( Sprawdź swoje połączenie internetowe. Jeśli problem nadal kontynuuje zgłoś problem na naszym repozytorium."
 }
