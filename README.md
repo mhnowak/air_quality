@@ -32,3 +32,19 @@ Set them up by running:
 ```bash
 git config core.hooksPath .githooks/
 ```
+
+## Dependencies
+
+### App dependencies
+
+- [dio](https://pub.dev/packages/dio) - http client,
+- [equatable](https://pub.dev/packages/equatable) - value based equality for objects,
+- [flex_color_scheme](https://pub.dev/packages/flex_color_scheme) - built in theme that follows material 3 standards,
+- [intl](https://pub.dev/packages/intl) - internalization of texts,
+- [json_serializable](https://pub.dev/packages/json_serializable) - code generator for json serialisation to/from Json,
+- [kiwi](https://pub.dev/packages/kiwi) - dependency injection,
+
+### Test dependencies
+
+- [alchemist](https://pub.dev/packages/alchemist) - screenshot tests,
+- [mocktail](https://pub.dev/packages/mocktail) - simplifies mocking,
