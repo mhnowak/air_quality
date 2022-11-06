@@ -5,4 +5,7 @@ class InvalidStatusCodeException extends AQException {
 
   final int? statusCode;
   final String? statusMessage;
+
+  @override
+  List<Object?> get props => [statusCode, statusMessage];
 }
