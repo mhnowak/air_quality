@@ -10,20 +10,27 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.2
+  dio: ^4.0.6
+  equatable: ^2.0.5
   flex_color_scheme: ^6.0.1
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
+  json_annotation: ^4.7.0
+  kiwi: ^4.0.3
+  meta: ^1.8.0
   recase: ^4.1.0
 
 dev_dependencies:
   alchemist: ^0.5.1
+  build_runner: ^2.3.0
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  meta: ^1.8.0
+  json_serializable: ^6.5.4
+  mocktail: ^0.3.0
 
 flutter:
   uses-material-design: true
