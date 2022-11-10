@@ -1,4 +1,4 @@
-import 'package:air_quality/core/data/network_manager.dart';
+import 'package:air_quality/core/data/networking/network_manager.dart';
 import 'package:air_quality/features/stations/domain/entities/station_entity.dart';
 
 class StationsRepository {

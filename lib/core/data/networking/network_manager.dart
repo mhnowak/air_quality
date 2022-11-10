@@ -1,3 +1,4 @@
+import 'package:air_quality/core/data/error_reporter/error_reporter.dart';
 import 'package:air_quality/core/domain/exceptions/aq_exception.dart';
 import 'package:air_quality/core/domain/exceptions/invalid_response_data_exception.dart';
 import 'package:air_quality/core/domain/exceptions/invalid_status_code_exception.dart';
@@ -6,9 +7,13 @@ import 'package:dio/dio.dart';
 typedef FromJson<T> = T Function(dynamic json);
 
 class NetworkManager {
-  NetworkManager(this._dio);
+  NetworkManager(
+    this._dio, {
+    required ErrorReporter errorReporter,
+  }) : _errorReporter = errorReporter;
 
   final Dio _dio;
+  final ErrorReporter _errorReporter;
 
   /// Returns parsed data from GET Request.
   ///
@@ -52,6 +57,8 @@ class NetworkManager {
       return fromJson(data) as R;
     }
 
-    throw InvalidResponseDataException(data);
+    final error = InvalidResponseDataException(data);
+    _errorReporter.logError(error);
+    throw error;
   }
 }

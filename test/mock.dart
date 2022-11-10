@@ -1,4 +1,5 @@
-import 'package:air_quality/core/data/network_manager.dart';
+import 'package:air_quality/core/data/error_reporter/error_reporter.dart';
+import 'package:air_quality/core/data/networking/network_manager.dart';
 import 'package:air_quality/core/domain/state/data_state.dart';
 import 'package:air_quality/features/stations/data/stations_repository.dart';
 import 'package:air_quality/features/stations/domain/entities/station_entity.dart';
@@ -15,6 +16,8 @@ abstract class MockStateNotifier<T> extends StateNotifier<T> {
 }
 
 class MockDio extends Mock implements Dio {}
+
+class MockErrorReporter extends Mock implements ErrorReporter {}
 
 class MockNetworkManager extends Mock implements NetworkManager {}
 
