@@ -1,6 +1,6 @@
 import 'package:air_quality/core/domain/exceptions/invalid_response_data_exception.dart';
 import 'package:air_quality/core/domain/state/data_state.dart';
-import 'package:air_quality/features/stations/presentation/notifiers/stations_notifier.dart';
+import 'package:air_quality/features/stations/dependencies.dart';
 import 'package:air_quality/features/stations/presentation/pages/stations_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
