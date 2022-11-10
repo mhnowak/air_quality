@@ -5,13 +5,13 @@ An app displaying air quality based on "Jakość Powietrza" portal's [API](http
 ## Goals
 
 1. Follow the [project's criteria](http://mw.home.amu.edu.pl/zajecia/PRA2023/PRAPRO.html)
-    - [ ] has meaningful tests,
+    - [X] has meaningful tests,
     - [ ] uses streams,
-    - [ ] JSON serialization and deserialization,
-    - [ ] uses at least one external library.
+    - [X] JSON serialization and deserialization,
+    - [X] uses at least one external library.
 2. KISS - keep it simple, stupid!
 3. App is able to run on all supported platforms:
-    - [ ] android,
+    - [X] android,
     - [ ] iOS,
     - [ ] macOS,
     - [ ] linux,
@@ -42,8 +42,8 @@ git config core.hooksPath .githooks/
 - [flex_color_scheme](https://pub.dev/packages/flex_color_scheme) - built in theme that follows material 3 standards,
 - [intl](https://pub.dev/packages/intl) - internalization of texts,
 - [json_serializable](https://pub.dev/packages/json_serializable) - code generator for to/from json methods,
-- [kiwi](https://pub.dev/packages/kiwi) - dependency injection,
-- [flutter_riverpod](https://pub.dev/packages/flutter_riverpod) - state management.
+- [flutter_riverpod](https://pub.dev/packages/flutter_riverpod) - state management and dependency injection,
+- [pretty_dio_logger](https://pub.dev/packages/pretty_dio_logger) - logger for network requests.
 
 ### Test dependencies
 
