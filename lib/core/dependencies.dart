@@ -1,23 +1,20 @@
 import 'package:air_quality/core/data/error_reporter/error_reporter.dart';
 import 'package:air_quality/core/data/networking/network_manager.dart';
-import 'package:air_quality/features/stations/dependencies.dart' as stations;
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:kiwi/kiwi.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-final kiwi = KiwiContainer();
-
-void setup() {
+final dioProvider = Provider((ref) {
   final dio = Dio(BaseOptions(baseUrl: 'https://api.gios.gov.pl/pjp-api/rest/'));
   if (kDebugMode) {
     dio.interceptors.add(PrettyDioLogger());
   }
+  return dio;
+});
 
-  kiwi
-    ..registerSingleton((container) => ErrorReporter())
-    ..registerSingleton((container) => dio)
-    ..registerSingleton((container) => NetworkManager(container(), errorReporter: kiwi()));
+final errorReporterProvider = Provider((ref) => ErrorReporter());
 
-  stations.setup();
-}
+final networkManagerProvider = Provider(
+  (ref) => NetworkManager(ref.watch(dioProvider), errorReporter: ref.watch(errorReporterProvider)),
+);

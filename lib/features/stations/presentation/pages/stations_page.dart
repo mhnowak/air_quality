@@ -1,7 +1,7 @@
 import 'package:air_quality/core/domain/state/data_state.dart';
 import 'package:air_quality/core/presentation/widgets/basic/aq_scaffold.dart';
+import 'package:air_quality/features/stations/dependencies.dart';
 import 'package:air_quality/features/stations/domain/entities/station_entity.dart';
-import 'package:air_quality/features/stations/presentation/notifiers/stations_notifier.dart';
 import 'package:air_quality/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
