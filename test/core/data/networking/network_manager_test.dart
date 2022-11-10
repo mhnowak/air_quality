@@ -1,12 +1,13 @@
-import 'package:air_quality/core/data/network_manager.dart';
+import 'package:air_quality/core/data/error_reporter/error_reporter.dart';
+import 'package:air_quality/core/data/networking/network_manager.dart';
 import 'package:air_quality/core/domain/exceptions/invalid_response_data_exception.dart';
 import 'package:air_quality/core/domain/exceptions/invalid_status_code_exception.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../mock.dart';
-import '../../t_data.dart';
+import '../../../mock.dart';
+import '../../../t_data.dart';
 
 void main() {
   const tData = 'tData';
@@ -16,11 +17,15 @@ void main() {
   const tMessageNotFound = 'Not Found';
 
   late MockDio mockDio;
+  late ErrorReporter mockErroReporter;
   late NetworkManager networkManager;
 
   setUp(() {
     mockDio = MockDio();
-    networkManager = NetworkManager(mockDio);
+    mockErroReporter = MockErrorReporter();
+    networkManager = NetworkManager(mockDio, errorReporter: mockErroReporter);
+
+    // when(() => mockErroReporter.logError(any(), any())).thenReturn(null);
   });
 
   group('GET - ', () {
@@ -36,6 +41,7 @@ void main() {
       expect(result, tData);
       verify(() => mockDio.get(tPath)).called(1);
       verifyNoMoreInteractions(mockDio);
+      verifyZeroInteractions(mockErroReporter);
     });
 
     test('When call is successful, data is list and matches with return type then returns parsed data', () async {
@@ -52,9 +58,11 @@ void main() {
       expect(result, [tData]);
       verify(() => mockDio.get(tPath)).called(1);
       verifyNoMoreInteractions(mockDio);
+      verifyZeroInteractions(mockErroReporter);
     });
 
     test('When the response is successful, data is null so it doesnt match return type then throws', () async {
+      const tError = InvalidResponseDataException(null);
       when(() => mockDio.get(any())).thenAnswer((_) async => Response(
             data: null,
             requestOptions: tRequestOptions,
@@ -63,9 +71,12 @@ void main() {
 
       final result = networkManager.get<String, String>(tPath, fromJson: tFromJson);
 
-      expect(result, throwsA(const InvalidResponseDataException(null)));
+      expect(result, throwsA(tError));
+      await pumpEventQueue();
       verify(() => mockDio.get(tPath)).called(1);
+      verify(() => mockErroReporter.logError(tError, any())).called(1);
       verifyNoMoreInteractions(mockDio);
+      verifyNoMoreInteractions(mockErroReporter);
     });
 
     test('When the response is unsuccessful and status code is 404 then throws', () async {
@@ -81,6 +92,7 @@ void main() {
       expect(result, throwsA(const InvalidStatusCodeException(tStatusCode404, tMessageNotFound)));
       verify(() => mockDio.get(tPath)).called(1);
       verifyNoMoreInteractions(mockDio);
+      verifyZeroInteractions(mockErroReporter);
     });
 
     test('When the response is unsuccessful and status code is null then throws', () async {
@@ -96,6 +108,7 @@ void main() {
       expect(result, throwsA(const InvalidStatusCodeException(null, null)));
       verify(() => mockDio.get(tPath)).called(1);
       verifyNoMoreInteractions(mockDio);
+      verifyZeroInteractions(mockErroReporter);
     });
   });
 }

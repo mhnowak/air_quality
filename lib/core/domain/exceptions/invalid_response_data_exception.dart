@@ -8,7 +8,6 @@ class InvalidResponseDataException extends AQException {
   final dynamic data;
 
   // TODO: AQ-9 Get localized error message.
-  // TODO: AQ-12 Get error message for crashlytics.
 
   @override
   List<Object?> get props => [data];
