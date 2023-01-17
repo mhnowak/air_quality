@@ -1,8 +1,10 @@
 import 'package:air_quality/core/domain/exceptions/invalid_response_data_exception.dart';
 import 'package:air_quality/core/domain/state/data_state.dart';
-import 'package:air_quality/features/stations/dependencies.dart';
+import 'package:air_quality/dependencies.dart';
+import 'package:air_quality/features/stations/presentation/cubits/stations_cubit.dart';
 import 'package:air_quality/features/stations/presentation/pages/stations_page.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 
 import '../../../../golden_test_runner.dart';
 import '../../../../mock.dart';
@@ -30,27 +32,24 @@ void main() {
     tStationEntity(),
   ];
 
-  late MockStationsNotifier mockStationsNotifier;
+  late MockStationsCubit mockStationsCubit;
 
   setUp(() {
-    mockStationsNotifier = MockStationsNotifier();
+    mockStationsCubit = MockStationsCubit();
+    sl.registerFactory<StationsCubit>(() => mockStationsCubit);
   });
+
+  tearDown(sl.reset);
 
   goldenPageTest(
     'Stations Page - Loaded',
-    overrides: [
-      stationsProvider.overrideWith((ref) => mockStationsNotifier),
-    ],
-    onBuild: () => mockStationsNotifier.updateState(DataState.loaded(tStations)),
+    onBuild: () => when(() => mockStationsCubit.state).thenReturn(DataState.loaded(tStations)),
     builder: () => const StationsPage(),
   );
 
   goldenPageTest(
     'Stations Page - Error',
-    overrides: [
-      stationsProvider.overrideWith((ref) => mockStationsNotifier),
-    ],
-    onBuild: () => mockStationsNotifier.updateState(const DataState.exception(tException)),
+    onBuild: () => when(() => mockStationsCubit.state).thenReturn(const DataState.exception(tException)),
     builder: () => const StationsPage(),
   );
 }

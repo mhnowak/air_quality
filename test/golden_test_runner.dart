@@ -3,7 +3,6 @@ import 'package:air_quality/generated/l10n.dart';
 import 'package:alchemist/alchemist.dart' as alchemist;
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meta/meta.dart';
 import 'package:recase/recase.dart';
 
@@ -21,23 +20,19 @@ Future<void> goldenTest(
   bool? skip,
   BoxConstraints constraints = const BoxConstraints(),
   double textScaleFactor = 1.0,
-  List<Override> overrides = const [],
 }) =>
     alchemist.goldenTest(
       name,
       fileName: name.snakeCase,
       skip: skip ?? false,
-      builder: () => ProviderScope(
-        overrides: overrides,
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: builder(),
-          localizationsDelegates: const [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-          ],
-          supportedLocales: S.delegate.supportedLocales,
-        ),
+      builder: () => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: builder(),
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
       ),
       textScaleFactor: textScaleFactor,
       constraints: constraints,
@@ -58,7 +53,6 @@ Future<void> goldenPageTest(
   bool? skip,
   double textScaleFactor = 1.0,
   void Function()? onBuild,
-  List<Override> overrides = const [],
 }) =>
     goldenTest(
       name,
@@ -70,7 +64,6 @@ Future<void> goldenPageTest(
         return _buildPageTestWidget(builder);
       },
       textScaleFactor: textScaleFactor,
-      overrides: overrides,
       constraints: const BoxConstraints(
         // +16 because it padding takes space.
         maxWidth: kMobileDeviceWidth + kTabletDeviceWidth + 16,
