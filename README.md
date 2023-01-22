@@ -42,7 +42,8 @@ git config core.hooksPath .githooks/
 - [flex_color_scheme](https://pub.dev/packages/flex_color_scheme) - built in theme that follows material 3 standards,
 - [intl](https://pub.dev/packages/intl) - internalization of texts,
 - [json_serializable](https://pub.dev/packages/json_serializable) - code generator for to/from json methods,
-- [flutter_riverpod](https://pub.dev/packages/flutter_riverpod) - state management and dependency injection,
+- [get_it](https://pub.dev/packages/get_it) - dependency injection,
+- [flutter_bloc](https://pub.dev/packages/flutter_bloc) - state management,
 - [pretty_dio_logger](https://pub.dev/packages/pretty_dio_logger) - logger for network requests.
 
 ### Test dependencies

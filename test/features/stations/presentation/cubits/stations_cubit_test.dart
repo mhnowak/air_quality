@@ -2,7 +2,7 @@ import 'package:air_quality/core/domain/exceptions/invalid_response_data_excepti
 import 'package:air_quality/core/domain/exceptions/unknown_exception.dart';
 import 'package:air_quality/core/domain/state/data_state.dart';
 import 'package:air_quality/features/stations/domain/entities/station_entity.dart';
-import 'package:air_quality/features/stations/presentation/notifiers/stations_notifier.dart';
+import 'package:air_quality/features/stations/presentation/cubits/stations_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -15,14 +15,14 @@ void main() {
   final tStations = [tStationEntity()];
 
   late MockStationsRepository mockStationsRepository;
-  late StationsNotifier notifier;
+  late StationsCubit cubit;
 
   setUp(() {
     mockStationsRepository = MockStationsRepository();
   });
 
   void setUpNotifier() {
-    notifier = StationsNotifier(mockStationsRepository);
+    cubit = StationsCubit(mockStationsRepository);
   }
 
   test('State should be loaded when request is succesful', () async {
@@ -31,7 +31,7 @@ void main() {
 
     await pumpEventQueue();
 
-    expect(notifier.debugState, DataState.loaded(tStations));
+    expect(cubit.state, DataState.loaded(tStations));
     verify(() => mockStationsRepository.getStations()).called(1);
     verifyNoMoreInteractions(mockStationsRepository);
   });
@@ -42,7 +42,7 @@ void main() {
 
     await pumpEventQueue();
 
-    expect(notifier.debugState, const DataState<List<StationEntity>>.exception(tException));
+    expect(cubit.state, const DataState<List<StationEntity>>.exception(tException));
     verify(() => mockStationsRepository.getStations()).called(1);
     verifyNoMoreInteractions(mockStationsRepository);
   });
@@ -53,7 +53,7 @@ void main() {
 
     await pumpEventQueue();
 
-    expect(notifier.debugState, DataState<List<StationEntity>>.exception(UnknownException(tUnknownException)));
+    expect(cubit.state, DataState<List<StationEntity>>.exception(UnknownException(tUnknownException)));
     verify(() => mockStationsRepository.getStations()).called(1);
     verifyNoMoreInteractions(mockStationsRepository);
   });
